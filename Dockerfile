@@ -1,5 +1,5 @@
-FROM anapsix/alpine-java:8u102b14_server-jre
-MAINTAINER Adrian Haasler García <dev@adrianhaasler.com>
+FROM anapsix/alpine-java:latest
+MAINTAINER Thomas Goddard <ohmygoddard@gmail.com> 
 
 # Configuration
 ENV JIRA_HOME /data/jira
@@ -11,4 +11,4 @@ RUN apk upgrade --update \
 
 # Create the user that will run the jira instance and his home directory (also make sure that the parent directory exists)
 RUN mkdir -p $(dirname $JIRA_HOME) \
-	&& adduser -h $JIRA_HOME -s /bin/bash -u 547 -D jira
+	&& adduser -h $JIRA_HOME -s /bin/bash -u 547 -D jira && chown -R jira $JIRA_HOME
